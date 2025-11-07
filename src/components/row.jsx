@@ -16,8 +16,10 @@ export default function Row({ guess = "", answer, rowIndex, activeRow }) {
         const letter = guess[i] ?? "";
 
         const baseTile =
-          "w-12 h-12 sm:w-16 sm:h-16 grid place-items-center rounded-md uppercase " +
-          "text-2xl sm:text-4xl font-semibold transition-all duration-300 border-2";
+          "grid place-items-center rounded-md uppercase font-semibold transition-all duration-300 border-2 " +
+          "w-12 h-12 text-2xl " +     /* Mobile */
+          "sm:w-14 sm:h-14 sm:text-3xl " + /* Tablet */
+          "md:w-16 md:h-16 md:text-4xl";   /* Desktop */
 
         const defaultTile =
           "border-gray-400 text-gray-700 dark:border-gray-600 dark:text-gray-200";

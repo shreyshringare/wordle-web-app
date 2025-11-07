@@ -75,22 +75,25 @@ export default function GameLayout() {
     setActiveRow((r) => r + 1);
   };
 
-  const handleInput = (key) => {
-    if (navigator.vibrate) navigator.vibrate(35);
-    if (gameOver.state) return resetGame();
-    if (key === "Enter") return handleEnter();
-    if (key === "Delete") {
-      setAttempts((prev) =>
-        prev.map((row, i) => (i === activeRow ? row.slice(0, -1) : row))
-      );
-      return;
-    }
-    if (/^[A-Z]$/.test(key) && attempts[activeRow].length < 5) {
-      setAttempts((prev) =>
-        prev.map((row, i) => (i === activeRow ? row + key : row))
-      );
-    }
-  };
+ const handleInput = (key) => {
+  if (gameOver.state) return resetGame();
+  if (key === "Enter") {
+    handleEnter();
+    return;
+  }
+  if (key === "Delete") {
+    setAttempts((prev) =>
+      prev.map((row, i) => (i === activeRow ? row.slice(0, -1) : row))
+    );
+    return;
+  }
+  if (/^[A-Z]$/.test(key) && attempts[activeRow].length < 5) {
+    setAttempts((prev) =>
+      prev.map((row, i) => (i === activeRow ? row + key : row))
+    );
+  }
+};
+
 
   useEffect(() => {
     const listener = (e) => {
