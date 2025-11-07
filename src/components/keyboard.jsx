@@ -14,7 +14,7 @@ export default function Keyboard({ layout, keyStates, onPress }) {
         max-w-[22rem]        /* Mobile */
         sm:max-w-[26rem]     /* Tablet */
         md:max-w-[30rem]     /* Laptop */
-        lg:max-w-[32rem]     /* Large Desktop */
+        lg:max-w-[34rem]     /* Large Desktop */
       "
     >
       {rows.map((row, rIndex) => (

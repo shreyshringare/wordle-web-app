@@ -19,8 +19,8 @@ export default function Row({ guess = "", answer, rowIndex, activeRow }) {
           "grid place-items-center rounded-md uppercase font-semibold transition-all duration-300 border-2 " +
           "w-12 h-12 text-2xl " +     /* Mobile */
           "sm:w-14 sm:h-14 sm:text-3xl " + /* Tablet */
-          "md:w-16 md:h-16 md:text-4xl";   /* Desktop */
-
+          "md:w-16 md:h-16 md:text-4xl"+   /* Desktop */
+          "lg:w-20 lg:h-20 lg:text-5xl";
         const defaultTile =
           "border-gray-400 text-gray-700 dark:border-gray-600 dark:text-gray-200";
 

@@ -112,7 +112,12 @@ export default function GameLayout() {
   }, [restartTrigger]);
 
   return (
-    <section className="w-full max-w-[40rem] min-h-screen px-4 flex flex-col gap-12 items-center justify-center">
+    <section className="
+     w-full max-w-[40rem] min-h-screen px-4 
+    flex flex-col items-center justify-center
+    gap-8 sm:gap-10 md:gap-12 lg:gap-14
+  ">
+
       <Navbar resetGame={resetGame} />
 
       <Board 
