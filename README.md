@@ -1,5 +1,7 @@
 # Wordle Clone (Frontend Only)
 
+Deployed Link: https://wordle-shreyas.vercel.app/
+
 A simple Wordle-style word guessing game built using React and Vite.  
 This project includes the complete frontend game logic and interface.  
 No backend or external API is used — the word list and validation happen locally.
