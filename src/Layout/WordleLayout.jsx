@@ -55,6 +55,7 @@ export default function GameLayout() {
 
     if (!isValidWord(word)) {
       setWordNotFound(true);
+      if (navigator.vibrate) navigator.vibrate([50, 50, 50]);
       setTimeout(() => setWordNotFound(false), 500);
       return;
     }
@@ -75,17 +76,15 @@ export default function GameLayout() {
   };
 
   const handleInput = (key) => {
+    if (navigator.vibrate) navigator.vibrate(35);
     if (gameOver.state) return resetGame();
-
     if (key === "Enter") return handleEnter();
-
     if (key === "Delete") {
       setAttempts((prev) =>
         prev.map((row, i) => (i === activeRow ? row.slice(0, -1) : row))
       );
       return;
     }
-
     if (/^[A-Z]$/.test(key) && attempts[activeRow].length < 5) {
       setAttempts((prev) =>
         prev.map((row, i) => (i === activeRow ? row + key : row))
@@ -93,23 +92,12 @@ export default function GameLayout() {
     }
   };
 
-  // ✅ FIXED KEYBOARD HANDLER
   useEffect(() => {
     const listener = (e) => {
-      if (e.key === "Enter") {
-        handleInput("Enter");
-        return;
-      }
-
-      if (e.key === "Backspace") {
-        handleInput("Delete");
-        return;
-      }
-
+      if (e.key === "Enter") return handleInput("Enter");
+      if (e.key === "Backspace") return handleInput("Delete");
       const letter = e.key.toUpperCase();
-      if (/^[A-Z]$/.test(letter)) {
-        handleInput(letter);
-      }
+      if (/^[A-Z]$/.test(letter)) handleInput(letter);
     };
 
     window.addEventListener("keydown", listener);
@@ -121,7 +109,7 @@ export default function GameLayout() {
   }, [restartTrigger]);
 
   return (
-    <section className="w-[40rem] h-full flex flex-col gap-25 items-center justify-center">
+    <section className="w-full max-w-[40rem] min-h-screen px-4 flex flex-col gap-12 items-center justify-center">
       <Navbar resetGame={resetGame} />
 
       <Board 

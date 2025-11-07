@@ -11,12 +11,13 @@ export default function Row({ guess = "", answer, rowIndex, activeRow }) {
   const submitted = rowIndex < activeRow && guess.length === 5;
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-1 sm:gap-2">
       {[...Array(5)].map((_, i) => {
         const letter = guess[i] ?? "";
 
         const baseTile =
-          "w-30 h-30 grid place-items-center rounded-md uppercase text-4xl font-semibold transition-all duration-300 border-2";
+          "w-12 h-12 sm:w-16 sm:h-16 grid place-items-center rounded-md uppercase " +
+          "text-2xl sm:text-4xl font-semibold transition-all duration-300 border-2";
 
         const defaultTile =
           "border-gray-400 text-gray-700 dark:border-gray-600 dark:text-gray-200";

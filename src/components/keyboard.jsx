@@ -7,9 +7,10 @@ function KeyButton({ label, state, wide, onPress }) {
   };
 
   const handleClick = (e) => {
+    if (navigator.vibrate) navigator.vibrate(25);
     const button = e.currentTarget;
     button.classList.remove("ripple-animate");
-    void button.offsetWidth; // forces reflow so animation restarts
+    void button.offsetWidth;
     button.classList.add("ripple-animate");
     onPress(label);
   };
@@ -17,16 +18,15 @@ function KeyButton({ label, state, wide, onPress }) {
   return (
     <button
       onClick={handleClick}
-      className={`key-ripple h-12 rounded-md font-semibold grid place-items-center 
+      className={`key-ripple h-12 sm:h-14 rounded-md font-semibold grid place-items-center 
                   transition-colors duration-200 hover:brightness-110
-                  ${wide ? "px-8" : "px-4 flex-1"} 
+                  ${wide ? "px-6 sm:px-8" : "px-3 sm:px-4 flex-1"} 
                   ${colorStates[state] || colorStates.idle}`}
     >
       {label}
     </button>
   );
 }
-
 
 export default function Keyboard({ layout, keyStates, onPress }) {
   const rows = [
@@ -36,9 +36,9 @@ export default function Keyboard({ layout, keyStates, onPress }) {
   ];
 
   return (
-    <div className="flex flex-col gap-2 w-full items-center scale-150">
+    <div className="flex flex-col gap-1 sm:gap-2 w-full items-center scale-100 sm:scale-110 md:scale-125">
       {rows.map((row, rIndex) => (
-        <div key={rIndex} className="flex gap-1 w-full justify-center">
+        <div key={rIndex} className="flex gap-1 sm:gap-2 w-full justify-center">
           {row.map((key) => (
             <KeyButton
               key={key}
